@@ -1,0 +1,72 @@
+.container{
+   background-color:white;
+   box-sizing: border-box;
+ }
+ .head{
+   font-size: 25px;
+   padding-left: 15px;
+   padding-top: 20px;
+   color:whitesmoke; 
+   margin-top: 10px;
+   text-transform: capitalize;
+   font-family: 'Courier New', Courier, monospace;
+   
+ }
+ .heading{
+   text-align: center;
+   font-size: 30px;
+ }
+ .head2{
+   background-color: black;
+ }
+ 
+ .about{
+ font-size: 20px;
+ padding-top: 20px;
+ color:black;
+ word-break: break-all;
+ padding-left: 10em;
+ overflow-wrap: break-word;
+}
+.links{
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: none;
+  padding-bottom: 30px;
+  text-align: center;
+
+}
+.link{
+   padding-left: 25px; 
+   text-decoration: none; 
+   color:white;
+   font-weight: bolder;
+   
+}
+.image{
+  width: 40rem;
+  height: 25rem;
+  box-shadow: 10rem;
+  padding-top: 10px;
+
+} 
+.div{
+    display:"flex";
+    width: '100%';
+  
+}
+  .contain{
+    background: 'grey';
+    min-height: '27rem';
+    font-size: 5rem;
+    padding-top: 10px;
+ 
+}
+
+
+/* @media screen and (min-width: 380px){ */
+  /* .container{
+    width: 100rem; */
+    /* overflow: hidden; */
+  /* }
+ }  */
