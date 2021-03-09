@@ -10,9 +10,9 @@ const linkStyle = {
 export default function Links(){
 
     return (
-        <div>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
             <Link to="/reset_password" style={linkStyle}>Forgot Password?</Link>
-            <Link to="/signup" style={linkStyle}>Not a member? Register</Link>
+            <Link to="/signup" style={linkStyle}>Not a member? </Link>
             
         </div>
     )

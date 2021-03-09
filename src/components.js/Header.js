@@ -7,7 +7,7 @@ import { Box } from "@material-ui/core";
 const linkStyle = {
   textDecoration:"none",
   margin:"1em",
-  fontSize:"1.5em"
+  fontSize:"1em"
 }
 
 export default function Header() {
@@ -45,7 +45,7 @@ export default function Header() {
           LOGOUT
         </Link>
       </Box>
-      <p>Hello, {user.email}</p>
+      <p>Hello, {user.displayName}</p>
     </div>
   );
 }

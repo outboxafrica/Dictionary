@@ -38,7 +38,7 @@ export default function ResetPassword() {
   return (
     <div style={{ width: "100%" }}>
       {" "}
-      <h3>FORGOT PASSWORD PAGE</h3>
+      <h3>Enter email address for a password rest link</h3>
       <Box display="flex" justifyContent="center" m={4} p={2}>
         <div>
           <form onSubmit={onSubmitHandler}>
@@ -59,6 +59,7 @@ export default function ResetPassword() {
                 type="submit"
                 variant="contained"
                 color="primary"
+                size="large"
                 onClick={onChangeHandler}
               >
                 Send Reset Link

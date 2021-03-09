@@ -9,19 +9,17 @@ import Profile from "./components/Profile";
 import Lookbook from "./components/Lookbook";
 import EditProfile from "./components/EditProfile";
 
-import {Box} from '@material-ui/core';
+import { Box } from "@material-ui/core";
+import "./App.css";
 function App() {
-
   return (
     <div className="App">
-      <h1>Welcome to Dictionary!</h1>
+      <h1 style={{ textAlign: "center" }}>Welcome to Dictionary!</h1>
       <AuthProvider>
         <Box display="flex" justifyContent="center">
-
-        <Header />
+          <Header />
         </Box>
         <Switch>
-          {/* <Route path="/" exact component={Home} /> */}
           <Route path="/profile" exact component={Profile} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={SignUp} />
@@ -30,7 +28,7 @@ function App() {
           <Route path="/reset_password" exact component={ResetPassword} />
         </Switch>
       </AuthProvider>
-   </div>
+    </div>
   );
 }
 
