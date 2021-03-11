@@ -1,0 +1,42 @@
+.App {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+input {
+	padding: 5px;
+	margin: 10px;
+	width: 60vw;
+	height: 8vh;
+	font-size: 3vw;
+	font-weight: 600;
+	border: none;
+	border-radius: 15px;
+	background-color: #c0c0c0b9;
+}
+
+input[type="submit"] {
+	background-color: rgba(0, 91, 107, .8);
+	color: white;
+	width: 15vw;
+	border: none;
+	outline: none;
+	border-radius: 15px;
+	box-shadow: 1px 1px 5px 0 gray;
+}
+
+a {
+	text-decoration: none;
+	margin: 10px;
+}
+
+img {
+	border-radius: 15px;
+}

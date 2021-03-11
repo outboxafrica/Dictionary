@@ -1,0 +1,13 @@
+{
+	"title": "EDU Online",
+	"text": "EDU Online is a content-driven platform to help students to create profiles and also learn together through sharing information.",
+	"button": [
+		{
+			"title": "Sign up!"
+		},
+		{
+			"title": "Log in",
+			"color": "#fff"
+		}
+	]
+}
