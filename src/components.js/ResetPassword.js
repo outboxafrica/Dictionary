@@ -58,7 +58,7 @@ export default function ResetPassword() {
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
+                style={{ backgroundColor: "#2E186A", color: "white" }}
                 size="large"
                 onClick={onChangeHandler}
               >

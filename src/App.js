@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1 style={{ textAlign: "center" }}>Welcome to Dictionary!</h1>
+      
       <AuthProvider>
         <Box display="flex" justifyContent="center">
           <Header />

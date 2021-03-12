@@ -1,17 +1,22 @@
 import React, { useState, useContext } from "react";
+import firebase from "firebase";
+import "firebase/database";
 import { AuthContext } from "../context";
 import ava from "../ava.png";
 import { BURL } from "../cloudinary";
-import { Input, Avatar, Button } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { Input, Button, TextField } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '40ch',
-
+    "& > *": {
+      margin: theme.spacing(2),
+      width: "60vw",
     },
+  },
+  large: {
+    width: "30vw",
+    height: "auto",
   },
 }));
 
@@ -21,18 +26,32 @@ export default function EditProfile() {
   const [password, setPassword] = useState("");
   const [displayName, setName] = useState("");
   const [photo, setPhoto] = useState(user.photoURL);
+  let userRef = firebase.database().ref("users").child(user.uid);
 
-  const [msg, setMsg] = useState("")
+  const [msg, setMsg] = useState("");
+  const [err, setErr] = useState("");
 
   const classes = useStyles();
 
   function changeHandler(el) {
     const { name, value } = el.target;
-    if (name === "NewName" && value) setName(value);
-    else if (name === "NewPassword") setPassword(value); 
+    if (name === "NewName") setName(value);
+    else if (name === "NewPassword") setPassword(value);
     // set new display name
     else if (name === "NewEmail") setEmail(value);
-    return false
+    return false;
+  }
+
+  function setError() {
+    setTimeout(() => {
+      setErr("");
+    }, 3000);
+  }
+
+  function setMessage() {
+    setTimeout(() => {
+      setMsg("");
+    }, 3000);
   }
 
   function updateEmail() {
@@ -41,12 +60,16 @@ export default function EditProfile() {
       .updateEmail(email)
       .then(function () {
         // Update successful.
+        userRef.update({ email: email });
         console.log("Email changed!");
-        setMsg("Email changed!")
+        setMsg("Email changed!");
+        setMessage();
       })
       .catch(function (error) {
         // An error happened.
-        console.log(error.message);
+        console.log(error.code);
+        setErr(error.message);
+        setError();
       });
   }
 
@@ -57,11 +80,14 @@ export default function EditProfile() {
       .then(() => {
         // Update successful.
         console.log("Password changed!");
-        setMsg("Password changed!")
+        setMsg("Password changed!");
+        setMessage();
       })
       .catch((error) => {
         // An error happened.
         console.log(error.message);
+        setErr(error.message);
+        setError();
       });
   }
 
@@ -72,13 +98,16 @@ export default function EditProfile() {
       })
       .then(() => {
         // Update successful.
+        userRef.update({ displayName: displayName });
         console.log("Name changed!");
         setMsg("Name changed!");
-
+        setMessage();
       })
       .catch((error) => {
         // An error happened.
         console.log(error.message);
+        setErr(error.message);
+        setError();
       });
   }
 
@@ -97,110 +126,97 @@ export default function EditProfile() {
         if (data.secure_url !== "") {
           const uploadedFileUrl = data.secure_url;
           setPhoto(uploadedFileUrl);
-            // console.log(uploadedFileUrl);
-          // console.log(photo);
         }
       })
       .catch((err) => console.error(err.message));
   }
 
-  function updatePhoto(){
+  function updatePhoto() {
     user
-    .updateProfile({
-      photoURL:photo
-    })
-    .then(() => {
-      // Update successful.
-      console.log("Photo changed!");
-      // console.log(photo);
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error.message);
-    });
+      .updateProfile({
+        photoURL: photo,
+      })
+      .then(() => {
+        // Update successful.
+        userRef.update({ pic: photo });
+        console.log("Photo changed!");
+        setMsg("Photo changed!");
+
+        // console.log(photo);
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error.message);
+        setErr(error.Message);
+      });
   }
 
-  function saveDetails(el) {
-    el.preventDefault();
-  }
   return (
     <div>
-      {msg}
-      <form
-        className="classes.root"
-        noValidate={true}
-        autoComplete="off"
-        onSubmit={saveDetails}
-      >
-        <Avatar
-          variant="rounded"
-          src={
-            !user.photoURL
-              ? ava
-              : photo
-          }
+      <div>{err}</div>
+      <div>{msg}</div>
+      <form className="classes.root" noValidate={true} autoComplete="off">
+        <img
+          className={classes.large}
+          src={!user.photoURL ? ava : photo}
+          alt={displayName}
         />
-<div className={classes.root} >
-
-        <Input
-          placeholder={user.displayName}
-          name="NewName"
-          type="text"
-          className={classes.root} 
-          value={displayName}
-          onChange={changeHandler}
+        <div className={classes.root}>
+          <TextField
+            placeholder={user.displayName ? displayName : "User"}
+            name="NewName"
+            type="text"
+            value={displayName}
+            onChange={changeHandler}
           />
-
-          </div>
-        <Button color="primary" onClick={updateName}>Change Name</Button>
-<div className={classes.root} >
-
-        <Input
-          placeholder={user.email}
-          name="NewEmail"
-          value={email}
-          type="email"
-          onChange={changeHandler}
+        </div>
+        <Button color="primary" onClick={updateName}>
+          Change Name
+        </Button>
+        <div className={classes.root}>
+          <TextField
+            placeholder={user.email}
+            name="NewEmail"
+            value={email}
+            type="email"
+            onChange={changeHandler}
           />
-          </div>
+        </div>
 
-        <Button color="primary" onClick={updateEmail}>Change Email</Button>
-        <div className={classes.root} 
-        >
-
-        <Input
-          placeholder="Set New Password"
-          name="NewPassword"
-          value={password}
-          type="password"
-          inputProps={("aria-label", "description")}
-          onChange={changeHandler}
+        <Button color="primary" onClick={updateEmail}>
+          Change Email
+        </Button>
+        <div className={classes.root}>
+          <TextField
+            placeholder="Set New Password"
+            name="NewPassword"
+            value={password}
+            type="password"
+            onChange={changeHandler}
           />
-          </div>
+        </div>
 
-        <Button color="primary" onClick={updatePassword}>Change Password</Button>
+        <Button color="primary" onClick={updatePassword}>
+          Change Password
+        </Button>
       </form>
       <form method="post">
-        <div className={classes.root} >
-
-        <Input type="file" variant="contained"
-        onChange={uploadPhoto}
-        />
+        <div className={classes.root}>
+          <Input type="file" variant="contained" onChange={uploadPhoto} />
         </div>
-<div>
-
-      <Button
-        id="upload_widget"
-        variant="outlined"
-        color="primary"
-        size="large"
-        onClick={updatePhoto}
-        m={5}
-        >
-        Change Avatar
-      </Button>
-          </div>
-        </form>
+        <div>
+          <Button
+            id="upload_widget"
+            variant="outlined"
+            color="primary"
+            size="large"
+            onClick={updatePhoto}
+            m={5}
+          >
+            Change Avatar
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

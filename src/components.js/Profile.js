@@ -13,11 +13,13 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    width:"60vw",
-    maxWidth: "80vw",
+    width: "60vw",
+    // maxWidth: "50vw",
   },
   media: {
-    height: "30vh",
+    width: "auto",
+    height: "50vh",
+    backgroundSize: "contain",
   },
 });
 
@@ -31,7 +33,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (user != null) {
-      setName(user.displayName);
+      setName(user.displayName ? user.displayName : "User");
       setEmail(user.email);
       setPhoto(user.photoURL);
     }
@@ -42,13 +44,11 @@ export default function Profile() {
       <Box display="flex" justifyContent="center">
         <Card className={classes.root}>
           <CardActionArea>
-            {/* <Avatar /> */}
             <CardMedia
               className={classes.media}
               image={!photo ? ava : photo}
               title="User_Photo"
             />
-            <div></div>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {name}

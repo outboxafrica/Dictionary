@@ -7,7 +7,12 @@ import { Box } from "@material-ui/core";
 const linkStyle = {
   textDecoration:"none",
   margin:"1em",
-  fontSize:"1em"
+  fontSize:"1em",
+  color:"white"
+}
+
+const headerStyle = {
+  width: "100%",  backgroundColor:"#2E186A",marginBottom:"1em"
 }
 
 export default function Header() {
@@ -26,9 +31,10 @@ export default function Header() {
 
   if (!user) {
     return (
-      <div style={{ width: "100%" }}>
+      <div style={headerStyle}>
         <Box display="flex" justifyContent="center" >
           <Link to="/" style={linkStyle}>HOME</Link>
+        <Link to="/lookbook" style={linkStyle}>LOOKBOOK</Link>
           <Link to="/login" style={linkStyle}>LOGIN</Link>
           <Link to="/signup" style={linkStyle}>SIGNUP</Link>
         </Box>
@@ -36,7 +42,7 @@ export default function Header() {
     );
   }
   return (
-    <div style={{ width: "100%" }}>
+    <div style={headerStyle}>
       <Box display="flex" justifyContent="center">
         <Link to="/" style={linkStyle}>HOME</Link>
         <Link to="/lookbook" style={linkStyle}>LOOKBOOK</Link>
@@ -45,7 +51,6 @@ export default function Header() {
           LOGOUT
         </Link>
       </Box>
-      <p>Hello, {user.displayName}</p>
     </div>
   );
 }

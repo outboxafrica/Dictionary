@@ -1,19 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const linkStyle = {
-    textDecoration:"none",
-    margin:"1em",
-    
-  }
+  textDecoration: "none",
+  margin: "1em",
+  fontSize: ".8em",
+};
 
-export default function Links(){
-
-    return (
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-            <Link to="/reset_password" style={linkStyle}>Forgot Password?</Link>
-            <Link to="/signup" style={linkStyle}>Not a member? </Link>
-            
-        </div>
-    )
+export default function Links() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <Link to="/reset_password" style={linkStyle}>
+        Forgot Password?
+      </Link>
+      <Link to="/signup" style={linkStyle}>
+        Not a member?{" "}
+      </Link>
+    </div>
+  );
 }

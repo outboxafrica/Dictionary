@@ -1,50 +1,55 @@
-import React, { useState, useEffect } from "react";
-// import firebase from "firebase/app";
+import React from "react";
+import firebase from "firebase/app";
 import "firebase/auth";
-import { DB } from "../firebase";
-import {Link} from 'react-router-dom'
+import "firebase/database";
+import ava from "../ava.png";
 
 export default function Lookbook() {
-  let 
-  [
-    userData
-    , setData
-  ] 
-  = 
-  useState([]);
+  firebase.database().ref("users").off();
 
-  const [userId, setID] = useState('')
-  const [displayName,setName] = useState('')
-  const [photo,setPhoto] = useState('')
+  firebase
+    .database()
+    .ref("users")
+    .once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var data = childSnapshot.val();
+        let displayName = data.displayName;
+        let pic = data.pic;
 
-  const fetchUsers = async () => {
-// var res = 
-
-await DB.collection("users").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-setData([{id:doc.id, ...doc.data()}])
-    // {id:doc.id, ...doc.data()};
-    console.log(doc.data());
-    console.log(userData);
-  })
-
-      }
-      ).catch((err)=>{
-console.log(err.message);
+        var listBody = document.querySelector("#listBody");
+        var listRow = document.createElement("div");
+        let listName = document.createElement("div");
+        listBody.append(listRow);
+        listRow.setAttribute("class", "list");
+        listRow.style.backgroundImage = `url(${pic !== "" ? pic : ava})`;
+        listRow.style.backgroundSize = "cover";
+        listRow.style.width = "10em";
+        listRow.style.height = "10em";
+        listRow.style.margin = "5px";
+        listRow.style.borderRadius = "10% 10% 0 0";
+        listRow.style.display = "flex";
+        listRow.style.flexDirection = "column";
+        listRow.style.justifyContent = "flex-end";
+        listName.style.display = "flex";
+        listName.style.backgroundColor = "#88888ad0";
+        listName.innerHTML = `
+        <p>${displayName ? displayName : "User"}</p> 
+        `;
+        listRow.append(listName);
+      });
     });
-  }
-
-  useEffect(() => {
-    fetchUsers()
-  },[]);
 
   return (
     <div>
-            {userData.map((user, idx) => (
-                <p key={user.id}>{user.email}</p>
-                ))}
-                {/* {console.log(userData)} */}
-                
-        </div>
+      <div
+        id="listBody"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          color: "white",
+        }}
+      ></div>
+    </div>
   );
 }

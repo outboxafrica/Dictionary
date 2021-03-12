@@ -6,13 +6,13 @@ import { auth } from "../firebase";
 import Links from "./Links";
 import { Redirect } from "react-router-dom";
 import { Button, Box, TextField } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: '40ch',
+      width: "50vw",
     },
   },
 }));
@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
   //get the user state from the context
   const { user } = useContext(AuthContext);
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const [error, setError] = useState(null);
-  
+
   const classes = useStyles();
-  
+
   function handleChange(e) {
     const { name, value } = e.target;
 
@@ -57,20 +57,25 @@ export default function Login() {
 
   return (
     <div style={{ width: "100%" }}>
-              <h2>
-                Login Here!
-              </h2>
-            
-      <Box display="flex" justifyContent="center" alignItems="center" m={1} p={2}>
+      <h2>Login Here!</h2>
+
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        m={1}
+        p={2}
+      >
         {!!user ? (
           <Redirect to={{ pathname: "/profile" }} />
         ) : (
           <div>
-          <Box>
-            {!error ? <div></div> : <div style={{color:"#f01",
-          fontSize:"0.7em"}}>{error}</div>}
-            
-            
+            <Box>
+              {!error ? (
+                <div></div>
+              ) : (
+                <div style={{ color: "#f01", fontSize: "0.7em" }}>{error}</div>
+              )}
             </Box>
             <form onSubmit={handleSubmit} className={classes.root}>
               <div>
@@ -94,8 +99,12 @@ export default function Login() {
                 />
               </div>
               <Box textAlign="center" m={2}>
-                <Button type="submit"
-                size="large" variant="contained" color="primary">
+                <Button
+                  type="submit"
+                  size="large"
+                  variant="contained"
+                  style={{ backgroundColor: "#2E186A", color: "white" }}
+                >
                   LOGIN
                 </Button>
               </Box>
