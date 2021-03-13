@@ -3,7 +3,7 @@ Contains features to EDU-Online Platform.
 
 # Features
 * User can Login
-* USer can view Profile
+* User can view Profile
 * User can edit Profile
   * User can change
     * Name
@@ -15,9 +15,11 @@ Contains features to EDU-Online Platform.
 * User can Logout
 * User[s] can view Lookbook
 
-## API's
+## API's, Technologies
 * Firebase
 * Cloudinary
+* React
+* Context
 
 ## Design
 * Material UI
