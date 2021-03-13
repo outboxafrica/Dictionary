@@ -1,3 +1,14 @@
+import React from 'react'
+
+export default function SignUp(){
+
+    return (
+        <div>
+            <h3>SIGNUP PAGE</h3>
+        </div>
+    )
+}
+
 // import React, { useContext, useState } from "react";
 // // import Loader from "./Loader";
 // import { AuthContext } from "../context";
@@ -78,14 +89,3 @@
 //     </div>
 //   );
 // }
-
-import React from 'react'
-
-export default function SignUp(){
-
-    return (
-        <div>
-            <h3>SIGNUP PAGE</h3>
-        </div>
-    )
-}

@@ -14,7 +14,6 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      
       <AuthProvider>
         <Box display="flex" justifyContent="center">
           <Header />
