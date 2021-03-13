@@ -3,17 +3,18 @@ import { Link, Redirect } from "react-router-dom";
 import { auth } from "../firebase";
 import { AuthContext } from "../context";
 import { Box } from "@material-ui/core";
-
 const linkStyle = {
-  textDecoration:"none",
-  margin:"1em",
-  fontSize:"1em",
+  textDecoration: "none",
+  margin: ".4em",
+  fontSize: "3vw",
   color:"white"
-}
+};
 
 const headerStyle = {
-  width: "100%",  backgroundColor:"#2E186A",marginBottom:"1em"
-}
+  width: "100%",
+  backgroundColor:"#2E186A",
+  marginBottom:"1em"
+};
 
 export default function Header() {
   const { user } = useContext(AuthContext);
@@ -31,22 +32,36 @@ export default function Header() {
 
   if (!user) {
     return (
-      <div style={headerStyle}>
-        <Box display="flex" justifyContent="center" >
-          <Link to="/" style={linkStyle}>HOME</Link>
-        <Link to="/lookbook" style={linkStyle}>LOOKBOOK</Link>
-          <Link to="/login" style={linkStyle}>LOGIN</Link>
-          <Link to="/signup" style={linkStyle}>SIGNUP</Link>
+      <div style={headerStyle} className="header">
+        <Box display="flex" justifyContent="center">
+          <Link to="/" style={linkStyle}>
+            HOME
+          </Link>
+          <Link to="/lookbook" style={linkStyle}>
+            LOOKBOOK
+          </Link>
+          <Link to="/login" style={linkStyle}>
+            LOGIN
+          </Link>
+          <Link to="/signup" style={linkStyle}>
+            SIGNUP
+          </Link>
         </Box>
       </div>
     );
   }
   return (
-    <div style={headerStyle}>
+    <div style={headerStyle} className="header">
       <Box display="flex" justifyContent="center">
-        <Link to="/" style={linkStyle}>HOME</Link>
-        <Link to="/lookbook" style={linkStyle}>LOOKBOOK</Link>
-        <Link to="/profile" style={linkStyle}>PROFILE</Link>
+        <Link to="/" style={linkStyle}>
+          HOME
+        </Link>
+        <Link to="/lookbook" style={linkStyle}>
+          LOOKBOOK
+        </Link>
+        <Link to="/profile" style={linkStyle}>
+          PROFILE
+        </Link>
         <Link to="/" onClick={logoutUser} style={linkStyle}>
           LOGOUT
         </Link>

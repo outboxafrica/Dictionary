@@ -163,7 +163,7 @@ export default function EditProfile() {
         />
         <div className={classes.root}>
           <TextField
-            placeholder={user.displayName ? displayName : "User"}
+            placeholder={user.displayName}
             name="NewName"
             type="text"
             value={displayName}
