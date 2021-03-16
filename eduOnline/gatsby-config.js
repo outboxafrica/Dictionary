@@ -12,14 +12,14 @@ module.exports = {
 	},
 	plugins: [
 		'gatsby-plugin-react-helmet',
-		{
-			resolve: `gatsby-source-contentful`,
-			options: {
-				spaceId: '1bayuj6zk0y1',
-				accessToken: 'be_LtJ_xpdbFyrmoy1JLh-MK3AxYWqiHZb-HlCMf0Kc',
-				downloadLocal: true
-			}
-		},
+		// {
+		// 	resolve: `gatsby-source-contentful`,
+		// 	options: {
+		// 		spaceId: '1bayuj6zk0y1',
+		// 		accessToken: 'be_LtJ_xpdbFyrmoy1JLh-MK3AxYWqiHZb-HlCMf0Kc',
+		// 		downloadLocal: true
+		// 	}
+		// },
 		{
 			resolve: `gatsby-plugin-sass`,
 			options: {
